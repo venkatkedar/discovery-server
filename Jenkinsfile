@@ -1,4 +1,8 @@
 pipeline{
+	environment{
+		registry="venkatkedar/discovery-server"
+		registryCredential='572e2bcf-0443-416b-815f-94e6bd66cb5b'
+	}
 	agent any
 	stages{
 		
@@ -14,8 +18,9 @@ pipeline{
 			
 			steps{
 				script{
-					def customImage=docker.build("my-image:${env.BUILD_ID}")
-					customImage.push()
+					docker.withRegistry(registry,registryCredential)
+					docker.build registry+":latest"
+					dockerImage.push()
 				}
 			}
 		}

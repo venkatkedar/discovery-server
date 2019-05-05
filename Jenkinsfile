@@ -17,7 +17,8 @@ pipeline{
 		stage('Build image'){
 			
 			steps{
-				script{
+				withDocker(docker: 'myDocker')
+				{
 					sh 'docker build -t registry+":latest"'
 					sh 'docker push registry+":latest"'
 				}

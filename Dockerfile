@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
-ADD target/config-server2-0.0.1-SNAPSHOT.jar app.jar
+ADD target/discovery-server-0.0.1-SNAPSHOT.jar app.jar
 #RUN sh -c 'touch /app.jar'
 #ENV JAVA_OPTS=""
 EXPOSE 9090

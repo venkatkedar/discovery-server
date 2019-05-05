@@ -5,13 +5,7 @@ pipeline{
 	}
 	agent any
 	stages{
-		stage('Initialize'){
-			input{
-				def dockerhome=tool name: 'myDocker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-				$env.PATH="${dockerhome}/bin:$env.PATH"
-			}
-			
-		}
+		
 		stage('Package stage'){
 			
 			steps{
@@ -21,14 +15,11 @@ pipeline{
 			}
 		}
 		stage('Build image'){
-			input{
-				def dockerhome=tool name: 'myDocker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-				$env.PATH="${dockerhome}/bin:$env.PATH"
-			}
+			
 			steps{
 				script{
-					docker.build registry+":latest"
-					dockerImage.push()
+					sh 'docker build -t registry+":latest"'
+					sh 'docker push registry+":latest"'
 				}
 			}
 		}

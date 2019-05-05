@@ -6,8 +6,11 @@ pipeline{
 	agent any
 	stages{
 		stage('Initialize'){
-			def dockerhome=tool name: 'myDocker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-			$env.PATH="${dockerhome}/bin:$env.PATH"
+			input{
+				def dockerhome=tool name: 'myDocker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
+				$env.PATH="${dockerhome}/bin:$env.PATH"
+			}
+			
 		}
 		stage('Package stage'){
 			
@@ -18,7 +21,10 @@ pipeline{
 			}
 		}
 		stage('Build image'){
-			
+			input{
+				def dockerhome=tool name: 'myDocker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
+				$env.PATH="${dockerhome}/bin:$env.PATH"
+			}
 			steps{
 				script{
 					docker.build registry+":latest"

@@ -17,13 +17,13 @@ pipeline{
 		stage('Build image'){
 			
 			steps{
+				script{
+					sh 'docker login -u vpakala@cs.stonybrook.edu -p $PWD'
+					sh 'docker build -t venkatkedar/discovery-server:latest .'
+					sh 'docker push venkatkedar/discovery-server:latest'
+				}
 				
 				
-				docker.withRegistry('https://hub.docker.com/', 'registryCredential') {
-
-                    def customImage = docker.build("venkatkedar/discovery-server:latest")
-                    customImage.push()
-                }
 			}
 		}
 	}

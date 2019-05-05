@@ -18,7 +18,7 @@ pipeline{
 			
 			steps{
 				script{
-					sh 'docker build -t registry+":latest" .'
+					sh 'docker build -t venkatkedar/discovery-server .'
 					sh 'docker push registry+":latest"'
 				}
 			}

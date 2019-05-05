@@ -17,7 +17,7 @@ pipeline{
 		stage('Build image'){
 			
 			steps{
-				withDocker(docker: 'myDocker')
+				withDockerServer(docker: 'myDocker')
 				{
 					sh 'docker build -t registry+":latest"'
 					sh 'docker push registry+":latest"'

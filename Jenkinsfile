@@ -18,7 +18,7 @@ pipeline{
 			
 			steps{
 				script{
-					sh 'docker login -u vpakala@cs.stonybrook.edu -p $PASSWD'
+					sh 'docker login -u $USERNAME -p $PASSWD'
 					sh 'docker build -t venkatkedar/discovery-server:latest .'
 					sh 'docker push venkatkedar/discovery-server:latest'
 				}

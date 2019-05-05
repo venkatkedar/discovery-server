@@ -6,10 +6,8 @@ pipeline{
 	agent any
 	stages{
 		stage('Initialize'){
-			steps{
-			def dockerhome=tool 'myDocker'
-			env.PATH="${dockerhome}/bin:${env.PATH}"
-			}
+			def dockerhome=tool name: 'myDocker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
+			$env.PATH="${dockerhome}/bin":$env.PATH
 		}
 		stage('Package stage'){
 			
